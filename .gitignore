@@ -25,3 +25,4 @@ composer.phar
 composer.lock
 /vendor
 /cache
+config.yml
