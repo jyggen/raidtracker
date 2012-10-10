@@ -1,5 +1,5 @@
-- database: 
-  - hostname: localhost
-  - username: root
-  - password: password
-  - database: raidtracker
+database: 
+  hostname: localhost
+  username: root
+  password: lolzor
+  database: qweqweqwe
