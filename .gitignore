@@ -22,3 +22,5 @@ desktop.ini
 .Spotlight-V100
 .Trashes
 composer.phar
+/vendor
+/cache
