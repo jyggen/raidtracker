@@ -12,5 +12,8 @@
 		"coss/bnetlib": "dev-master",
 		"fuel/cache"  : "dev-develop",
 		"jet/router"  : "dev-master"
+	},
+	"autoload": {
+		"psr-0": { "Jyggen\\Raidtracker": "classes/" }
 	}
 }
