@@ -6,7 +6,7 @@ use Jet\Router\Router;
 $router = new Router;
 
 $router->addRoutes(array(
-	'/' => '\jyggen\raidtracker\Index:index'
+	'/' => '\Jyggen\Raidtracker\Controller\Index:index'
 ));
 
 $router->launch();
