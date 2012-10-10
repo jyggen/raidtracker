@@ -12,7 +12,8 @@
 		"coss/bnetlib": "dev-master",
 		"fuel/cache": "dev-develop",
 		"jet/router": "dev-master",
-		"jcambien/kengai": "dev-master"
+		"jcambien/kengai": "dev-master",
+		"pimple/pimple": "1.0.x-dev"
 	},
 	"autoload": {
 		"psr-0": { "Jyggen\\Raidtracker": "classes/" }
