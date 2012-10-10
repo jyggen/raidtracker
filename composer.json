@@ -2,13 +2,14 @@
 	"repositories": [
 		{
 			"type": "composer",
-			"url": "http://packages.zendframework.com/"
+			"url" : "http://packages.zendframework.com/"
 		}
 	],
 	"minimum-stability": "dev",
 	"require": {
 		"cabinet/dbal": "dev-master",
-		"twig/twig": "1.10.x-dev",
-		"coss/bnetlib": "dev-master"
+		"twig/twig"   : "1.10.x-dev",
+		"coss/bnetlib": "dev-master",
+		"fuel/cache"  : "dev-develop"
 	}
 }
