@@ -12,8 +12,7 @@
 		"coss/bnetlib": "dev-master",
 		"fuel/cache": "dev-develop",
 		"jet/router": "dev-master",
-		"dflydev/dot-access-configuration": "1.0.x-dev",
-		"symfony/yaml": "2.2.x-dev"
+		"jcambien/kengai": "dev-master"
 	},
 	"autoload": {
 		"psr-0": { "Jyggen\\Raidtracker": "classes/" }
