@@ -10,6 +10,7 @@
 		"cabinet/dbal": "dev-master",
 		"twig/twig"   : "1.10.x-dev",
 		"coss/bnetlib": "dev-master",
-		"fuel/cache"  : "dev-develop"
+		"fuel/cache"  : "dev-develop",
+		"jet/router"  : "dev-master"
 	}
 }
