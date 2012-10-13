@@ -1,0 +1,52 @@
+.footer {
+	background-color: #F5F5F5;
+	border-top: 1px solid #E5E5E5;
+	margin-top: 70px;
+	padding: 70px 0;
+}
+
+tfoot {
+	font-weight: bold !important;
+}
+
+tfoot td {
+	border-top: #AAA 1px solid !important;
+}
+
+div[rel=tooltip] {
+	cursor: pointer;
+}
+
+.death-knight {	color: #C41F3B; }
+.druid { color: #FF7D0A; }
+.hunter { color: #ABD473; }
+.mage { color: #69CCF0; }
+.monk { color: #00FF96; }
+.paladin { color: #F58CBA; }
+.priest { color: #FFFFFF; }
+.rogue { color: #FFF569; }
+.shaman { color: #0070DE; }
+.warlock { color: #9482C9; }
+.warrior { color: #C79C6E; }
+
+.center { text-align: center !important; }
+.icon { width: 16px; height: 16px; margin: 0 auto; }
+.offspec { background: url("/img/offspec.png"); }
+.confirmed { background: url("/img/confirmed.png"); }
+.standby { background: url("/img/standby.png"); }
+.out { background: url("/img/out.png"); }
+
+.ir {
+	background-color: transparent;
+	border: 0;
+	overflow: hidden;
+	/* IE 6/7 fallback */
+	*text-indent: -9999px;
+}
+
+.ir:before {
+	content: "";
+	display: block;
+	width: 0;
+	height: 100%;
+}
