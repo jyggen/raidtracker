@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>{{ config.get("guild.name") }}</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap-responsive.min.css" rel="stylesheet">
+		<link href="css/raidtracker.css" rel="stylesheet">
+		<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+		<!--[if lt IE 9]>
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+	</head>
+	<body data-spy="scroll" data-target=".navbar">
+		<div class="navbar navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container">
+					<button data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar" type="button">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a href="./" class="brand">{{ config.get("guild.name") }}</a>
+					<div class="nav-collapse collapse">
+						<ul class="nav">
+							<li><a href="#home">Home</a></li>
+							<li><a href="#attendance">Raid Attendance</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="home" class="hero-unit">
+			<div class="container">
+				<h1>{{ config.get("guild.name") }} <small>{{ config.get("guild.realm") }}-{{ config.get("guild.region") }}</small></h1>
+				<p><em>Raid Tracker is supermegafoxyawesomehot!</em></p>
+			</div>
+		</div>
+		<div class="container">
+			{% block content %}{% endblock %}
+		</div>
+		<footer class="footer">
+			<div class="container">
+				<p class="pull-right"><a href="#">Back to top</a></p>
+				<p>Running Raid Tracker {{ VERSION }}, developed with love by <a href="http://jyggen.com/" target="_blank">jyggen</a>. Open-sourced and available for free on <a href="https://github.com/jyggen/raidtracker" target="_blank">GitHub</a>.</p>
+			</div>
+		</footer>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<script src="js/can.jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/raidtracker.js"></script>
+		<script>
+		$('#attendance').tooltip({
+		  selector: "div[rel=tooltip]"
+		})
+		</script>
+	</body>
+</html>
+
