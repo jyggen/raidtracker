@@ -1,5 +1,10 @@
+guild:
+  name: My Awesome Guild
+  realm: Auchindoun
+  region: EU
 database: 
+  driver: mysql
   hostname: localhost
   username: root
-  password: lolzor
-  database: qweqweqwe
+  password: sUp3rS3cre7
+  database: raidtracker
