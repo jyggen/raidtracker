@@ -1,0 +1,40 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+	<div id="attendance">
+		<div class="page-header">
+			<h2>Raid Attendance <small>or <em>Who's slacking?</em></small></h2>
+			<table class="table table-striped table-hover">
+			<thead>
+				<tr>
+					<th>Player</th>
+					<th class="center">ilvl</th>
+					{% for key, data in events %}
+						<th class="center">{{ data.date|date("M jS") }}</th>
+					{% endfor %}
+					<th>Total</th>
+					<th>Karma</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for player in players %}
+				    {% include "attendance.twig" %}
+				{% endfor %}
+			</tbody>
+			<tfoot>
+				<tr>
+					<td>{{ players|length }} Raiders</td>
+					<td class="center">{{ players|avg('ilvl') }}</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td>6.66</td>
+				</tr>
+			</tfoot>
+		</table>
+		</div>
+	</div>
+
+{% endblock %}
