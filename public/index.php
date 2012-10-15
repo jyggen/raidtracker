@@ -7,6 +7,7 @@ use Cabinet\DBAL\Db;
 use Kengai\Manager as Kengai;
 use Kengai\SourceReader\YAML;
 
+/* Let's be lazy and just  try/catch everything! */
 try {
 
 	/* Configuration */
@@ -37,8 +38,8 @@ try {
 	$router = new Router;
 
 	$router->addRoutes(array(
-		'/'           => function(){ return array('Jyggen\Raidtracker\Controller\Index', 'index'); },
-		'error'       => function($error){ die('404'); },
+		'/'     => function(){ return array('Jyggen\Raidtracker\Controller\Index', 'index'); },
+		'error' => function($error){ die('404'); },
 	));
 
 	list($controller, $method) = $router->launch();

@@ -13,8 +13,8 @@
 					{% for key, data in events %}
 						<th class="center">{{ data.date|date("M jS") }}</th>
 					{% endfor %}
-					<th>Total</th>
-					<th>Karma</th>
+					<th class="center">Total</th>
+					<th class="center">Karma</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -26,11 +26,11 @@
 				<tr>
 					<td>{{ players|length }} Raiders</td>
 					<td class="center">{{ players|avg('ilvl') }}</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td>6.66</td>
+					{% for key, data in events %}
+						<td class="center"></td>
+					{% endfor %}
+					<td class="center">{{ total }}</td>
+					<td class="center">{{ karma }}</td>
 				</tr>
 			</tfoot>
 		</table>
