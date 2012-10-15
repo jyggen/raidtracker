@@ -1,0 +1,20 @@
+{
+	"repositories": [
+		{
+			"type": "composer",
+			"url": "http://packages.zendframework.com/"
+		}
+	],
+	"minimum-stability": "dev",
+	"require": {
+		"cabinet/dbal": "dev-master",
+		"twig/twig": "1.10.x-dev",
+		"coss/bnetlib": "dev-master",
+		"jet/router": "dev-master",
+		"jcambien/kengai": "dev-master",
+		"pimple/pimple": "1.0.x-dev"
+	},
+	"autoload": {
+		"psr-0": { "Jyggen\\Raidtracker": "classes/" }
+	}
+}

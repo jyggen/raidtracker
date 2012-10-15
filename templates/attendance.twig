@@ -1,0 +1,17 @@
+<tr>
+	<td class="{{ player.class|cssClass }}">{{ player.name }}</td>
+	<td class="center">{{ player.ilvl }}</td>
+	{% for event in player.events %}
+		{% if event is not empty %}
+			<td>
+				<div rel="tooltip" data-original-title="{{ event.status|lower|ucwords }}" class="{{ event.status|cssClass }} icon ir">
+					{{ event.status|lower|ucwords }}
+				</div>
+			</td>
+		{% else %}
+			<td></td>
+		{% endif %}
+	{% endfor %}
+	<td class="center">{{ player.total }}</td>
+	<td class="center">{{ player.karma }}</td>
+</tr>
