@@ -93,23 +93,13 @@ class Index extends Controller {
 		}
 
 		$karma = array();
-		$total = array(0 => 0, 1 => 0, 2 => 0);
 		foreach($players as $player) {
 			$karma[] = $player['karma'];
-			$parts   = explode(' / ', $player['total']);
-			foreach($parts as $key => $val) {
-				$total[$key] += $val;
-			}
-		}
-
-		foreach($total as $key => $val) {
-			$total[$key] = round($val / count($players));
 		}
 
 		return $this->template->render('index.twig', array(
 			'events'  => $events,
 			'players' => $players,
-			'total'   => implode(' / ', $total),
 			'karma'   => round(array_sum($karma)/count($karma), 2),
 		));
 
