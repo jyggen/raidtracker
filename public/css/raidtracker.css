@@ -17,17 +17,17 @@ div[rel=tooltip] {
 	cursor: pointer;
 }
 
-.death-knight {	color: #C41F3B; }
-.druid { color: #FF7D0A; }
-.hunter { color: #ABD473; }
-.mage { color: #69CCF0; }
-.monk { color: #00FF96; }
-.paladin { color: #F58CBA; }
-.priest { color: #FFFFFF; }
-.rogue { color: #FFF569; }
-.shaman { color: #0070DE; }
-.warlock { color: #9482C9; }
-.warrior { color: #C79C6E; }
+.death-knight { color: #93172c; }
+.druid { color: #bf5e08; }
+.hunter { color: #809f56; }
+.mage { color: #4f99b4; }
+.monk { color: #00bf71; }
+.paladin { color: #b8698c; }
+.priest { color: #bfbfbf; }
+.rogue { color: #bfb84f; }
+.shaman { color: #0054a7; }
+.warlock { color: #6f6297; }
+.warrior { color: #957553; }
 
 .center { text-align: center !important; }
 .icon { width: 16px; height: 16px; margin: 0 auto; }
