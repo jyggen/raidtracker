@@ -36,6 +36,11 @@ div[rel=tooltip] {
 .standby { background: url("/img/standby.png"); }
 .out { background: url("/img/out.png"); }
 
+.q2 { color: #1EFF00; }
+.q3 { color: #0070FF; }
+.q4 { color: #A335EE; }
+.q5 { color: #FF8000; }
+
 .ir {
 	background-color: transparent;
 	border: 0;

@@ -97,10 +97,30 @@ class Index extends Controller {
 			$karma[] = $player['karma'];
 		}
 
+		$drops = $this->db->select('d.id', 'e.date', array('p.name', 'player_name'), array('c.name', 'player_class'), array('i.id', 'item_id'), array('i.quality', 'item_quality'), array('i.name', 'item_name'), array('n.name', 'npc_name'), array('z.name', 'zone_name'))
+		              ->from(array('drops', 'd'))
+		              ->join(array('events', 'e'), 'left')
+		              ->on('e.id', 'd.event_id')
+		              ->join(array('players', 'p'), 'left')
+		              ->on('p.id', 'd.player_id')
+		              ->join(array('classes', 'c'), 'left')
+		              ->on('c.id', 'p.class_id')
+		              ->join(array('items', 'i'), 'left')
+		              ->on('i.id', 'd.item_id')
+		              ->join(array('npcs_in_zones', 'nz'), 'left')
+		              ->on('nz.id', 'd.npcs_in_zones_id')
+		              ->join(array('npcs', 'n'), 'left')
+		              ->on('n.id', 'nz.npc_id')
+		              ->join(array('zones', 'z'), 'left')
+		              ->on('z.id', 'nz.zone_id')
+		              ->orderBy('date', 'DESC')
+		              ->execute();
+
 		return $this->template->render('index.twig', array(
 			'events'  => $events,
 			'players' => $players,
 			'karma'   => round(array_sum($karma)/count($karma), 2),
+			'drops'   => $drops,
 		));
 
 	}

@@ -1,0 +1,7 @@
+<tr>
+	<td>{{ drop.date|date("F jS, Y") }}</td>
+	<td class="{{ drop.player_class|cssClass }}">{{ drop.player_name }}</td>
+	<td><a href="http://www.wowdb.com/items/{{ drop.item_id }}" class="q{{ drop.item_quality }}">[{{ drop.item_name }}]</a></td>
+	<td>{{ drop.zone_name }}</td>
+	<td>{{ drop.npc_name }}</td>
+</tr>
