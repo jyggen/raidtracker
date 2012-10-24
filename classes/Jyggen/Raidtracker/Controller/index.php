@@ -51,7 +51,7 @@ class Index extends Controller {
 			$total      = array(0 => 0, 1 => 0, 2 => 0);
 			foreach($events as $event) {
 				if(array_key_exists($event->id, $event_data)) {
-					
+
 					$attendance[] = $event_data[$event->id];
 
 					switch($event_data[$event->id]['status']) {
@@ -78,7 +78,7 @@ class Index extends Controller {
 				}
 			}
 
-			$karma = round(array_sum($karma) / count($karma), 2);
+			$karma = (count($karma) == 0) ? 0 : round(array_sum($karma) / count($karma), 2);
 			$total = implode(' / ', $total);
 
 			$players[] = array(
