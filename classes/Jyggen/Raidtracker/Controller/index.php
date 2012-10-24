@@ -113,7 +113,8 @@ class Index extends Controller {
 		              ->on('n.id', 'nz.npc_id')
 		              ->join(array('zones', 'z'), 'left')
 		              ->on('z.id', 'nz.zone_id')
-		              ->orderBy('date', 'DESC')
+		              ->orderBy('e.date', 'DESC')
+		              ->orderBy('d.id', 'DESC')
 		              ->execute();
 
 		return $this->template->render('index.twig', array(
