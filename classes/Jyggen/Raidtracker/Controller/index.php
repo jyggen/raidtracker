@@ -125,6 +125,7 @@ class Index extends Controller {
 			'players' => $players,
 			'karma'   => round(array_sum($karma)/count($karma), 2),
 			'drops'   => $drops,
+			'user'    => $this->app['session']->get('user')
 		));
 
 	}
