@@ -25,6 +25,8 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 	),
 ));
 
+$app->register(new Silex\Provider\SessionServiceProvider());
+
 $app->get('/', function() use($app){
 
 	$controller = new Jyggen\Raidtracker\Controller\Index($app);
