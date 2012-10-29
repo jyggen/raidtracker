@@ -5,18 +5,16 @@ class Controller {
 
 	protected $config, $db, $template;
 
-	public function __construct(\Pimple $di) {
+	public function __construct(\Silex\Application $app) {
 
-		$this->config   = $di['config'];
-		$this->db       = $di['database'];
-		$this->template = $di['template'];
+		$this->app = $app;
 
-		$this->template->addExtension(new Twig\Extension());
-		$this->template->addGlobal('config', $this->config);
-		$this->template->addGlobal('VERSION', '1.0');
-		$this->template->addFilter('avg', new \Twig_Filter_Function('average'));
-		$this->template->addFilter('cssClass', new \Twig_Filter_Function('strToCssClass'));
-		$this->template->addFilter('ucwords', new \Twig_Filter_Function('ucwords'));
+		$app['twig']->addExtension(new Twig\Extension());
+		$app['twig']->addGlobal('config', $app['config']);
+		$app['twig']->addGlobal('VERSION', '1.0');
+		$app['twig']->addFilter('avg', new \Twig_Filter_Function('average'));
+		$app['twig']->addFilter('cssClass', new \Twig_Filter_Function('strToCssClass'));
+		$app['twig']->addFilter('ucwords', new \Twig_Filter_Function('ucwords'));
 
 	}
 

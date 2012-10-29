@@ -2,7 +2,7 @@ guild:
   name: My Awesome Guild
   realm: Auchindoun
   region: EU
-database: 
+db:
   driver: mysql
   hostname: localhost
   username: root

@@ -2,59 +2,34 @@
 require '../vendor/autoload.php';
 require '../functions.php';
 
-use Jet\Router\Router;
-use Cabinet\DBAL\Db;
-use Kengai\Manager as Kengai;
-use Kengai\SourceReader\YAML;
+$wisdom = new KevinGH\Wisdom\Wisdom('../');
+$wisdom->addLoader(new KevinGH\Wisdom\Loader\YAML);
+$wisdom->setCache('../cache');
 
-/* Let's be lazy and just  try/catch everything! */
-try {
+$app = new Silex\Application();
 
-	/* Configuration */
-	$config = new Kengai();
+$app['debug']  = false;
+$app['config'] = $wisdom->get('config.yml');
+$app['db']     = Cabinet\DBAL\Db::connection(array(
+	'driver'   => $app['config']['db']['driver'],
+	'username' => $app['config']['db']['username'],
+	'password' => $app['config']['db']['password'],
+	'database' => $app['config']['db']['database'],
+));
 
-	$config->add(new YAML('../config.yml'));
-	$config->fetch();
+$app->register(new Silex\Provider\TwigServiceProvider(), array(
+	'twig.path'    => '../templates',
+	'twig.options' => array(
+		'debug' => false,
+		'cache' => '../cache',
+	),
+));
 
-	/* Database */
-	$db = Db::connection(array(
-		'driver'   => $config->get('database.driver'),
-		'username' => $config->get('database.username'),
-		'password' => $config->get('database.password'),
-		'database' => $config->get('database.database'),
-	));
+$app->get('/', function() use($app){
 
-	/* Template Engine */
-	$loader = new \Twig_Loader_Filesystem('../templates');
-	$twig   = new \Twig_Environment($loader);
+	$controller = new Jyggen\Raidtracker\Controller\Index($app);
+	return $controller->get_index();
 
-	/* Dependency Injection */
-	$container             = new Pimple();
-	$container['config']   = $config;
-	$container['database'] = $db;
-	$container['template'] = $twig;
+});
 
-	/* Routing */
-	$router = new Router;
-
-	$router->addRoutes(array(
-		'/'     => function(){ return array('Jyggen\Raidtracker\Controller\Index', 'index'); },
-		'error' => function($error){ die('404'); },
-	));
-
-	list($controller, $method) = $router->launch();
-
-	$controllerObject = new $controller($container);
-	$method           = strtolower(Router::getMethod()).'_'.$method;
-
-	if (method_exists($controllerObject, $method)) {
-
-		print call_user_func(array($controllerObject, $method));
-
-	} else throw new Exception('Invalid method "'.$method.'" for controller "'.$controller.'".');
-
-} catch (Exception $e) {
-
-	die('<pre><strong>Error:</strong> '.$e->getMessage().'</pre>');
-
-}
+$app->run();

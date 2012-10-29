@@ -7,7 +7,10 @@ class Index extends Controller {
 
 	public function get_index() {
 
-		$events    = $this->db->select()->from('events')->orderBy('date', 'DESC')->execute();
+		$db   = $this->app['db'];
+		$twig = $this->app['twig'];
+
+		$events    = $db->select()->from('events')->orderBy('date', 'DESC')->execute();
 		$event_ids = array();
 
 		krsort($events);
@@ -17,7 +20,7 @@ class Index extends Controller {
 		}
 
 		$players = array();
-		$rows    = $this->db->select('p.id', array('c.name', 'class'), 'p.name', 'p.ilvl')
+		$rows    = $db->select('p.id', array('c.name', 'class'), 'p.name', 'p.ilvl')
 		                ->from(array('players', 'p'))
 		                ->join(array('classes', 'c'), 'left')
 		                ->on('c.id', 'p.class_id')
@@ -27,7 +30,7 @@ class Index extends Controller {
 		foreach($rows as $row) {
 
 			$event_data = array();
-			$attendance = $this->db->select('a.id', 'a.status', array('e.id', 'event_id'))
+			$attendance = $db->select('a.id', 'a.status', array('e.id', 'event_id'))
 			                   ->from(array('attendance', 'a'))
 			                   ->join(array('events', 'e'), 'left')
 			                   ->on('e.id', 'a.event_id')
@@ -97,7 +100,7 @@ class Index extends Controller {
 			$karma[] = $player['karma'];
 		}
 
-		$drops = $this->db->select('d.id', 'e.date', array('p.name', 'player_name'), array('c.name', 'player_class'), array('i.id', 'item_id'), array('i.quality', 'item_quality'), array('i.name', 'item_name'), array('n.name', 'npc_name'), array('z.name', 'zone_name'))
+		$drops = $db->select('d.id', 'e.date', array('p.name', 'player_name'), array('c.name', 'player_class'), array('i.id', 'item_id'), array('i.quality', 'item_quality'), array('i.name', 'item_name'), array('n.name', 'npc_name'), array('z.name', 'zone_name'))
 		              ->from(array('drops', 'd'))
 		              ->join(array('events', 'e'), 'left')
 		              ->on('e.id', 'd.event_id')
@@ -117,7 +120,7 @@ class Index extends Controller {
 		              ->orderBy('d.id', 'DESC')
 		              ->execute();
 
-		return $this->template->render('index.twig', array(
+		return $twig->render('index.twig', array(
 			'events'  => $events,
 			'players' => $players,
 			'karma'   => round(array_sum($karma)/count($karma), 2),
