@@ -21,16 +21,24 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 	'twig.path'    => '../templates',
 	'twig.options' => array(
 		'debug' => false,
-		'cache' => '../cache',
+		#'cache' => '../cache',
 	),
 ));
 
 $app->register(new Silex\Provider\SessionServiceProvider());
 
-$app->get('/', function() use($app){
+$app->get('/', function() use($app) {
 
 	$controller = new Jyggen\Raidtracker\Controller\Index($app);
 	return $controller->get_index();
+
+});
+
+$app->post('/login', function() use($app) {
+
+});
+
+$app->post('/logout', function() use($app) {
 
 });
 

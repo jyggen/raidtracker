@@ -29,6 +29,20 @@
 							<li><a href="#loot">Loot History</a></li>
 						</ul>
 					</div>
+					<div class="nav-collapse collapse pull-right">
+						<ul class="nav">
+							{% if user is not null %}
+								<li class="dropdown">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
+									<ul class="dropdown-menu">
+										<li>qwe</li>
+									</ul>
+								</li>
+							{% else %}
+								<li><a id="login" href="javascript:void(0)">Login</a></li>
+							{% endif %}
+						</ul>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -48,14 +62,42 @@
 			</div>
 		</footer>
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<script src="//login.persona.org/include.js"></script>
 		<script src="//static-azeroth.cursecdn.com/current/js/syndication/tt.js"></script>
 		<script src="js/can.jquery.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/raidtracker.js"></script>
 		<script>
+		var currentUser = null;
 		$('#attendance').tooltip({
 		  selector: "div[rel=tooltip]"
-		})
+		});
+		$('#login').on('click', function(){
+			navigator.id.request();
+		});
+		$('#logout').on('click', function(){
+			navigator.id.logout();
+		});
+		navigator.id.watch({
+			loggedInUser: currentUser,
+			onlogin: function(assertion) {
+				$.ajax({
+					type   : 'POST',
+					url    : '/login',
+					data   : {assertion: assertion},
+					success: function(res, status, xhr) { window.location.reload(); },
+					error  : function(xhr, status, err) { alert("login failure"); }
+				});
+			},
+			onlogout: function() {
+				$.ajax({
+					type   : 'POST',
+					url    : '/logout',
+					success: function(res, status, xhr) { window.location.reload(); },
+					error  : function(xhr, status, err) { alert("logout failure"); }
+				});
+			}
+		});
 		</script>
 	</body>
 </html>
