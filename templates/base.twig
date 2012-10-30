@@ -33,9 +33,13 @@
 						<ul class="nav">
 							{% if user is not null %}
 								<li class="dropdown">
-									<a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ user.email }} <b class="caret"></b></a>
 									<ul class="dropdown-menu">
-										<li>qwe</li>
+										{% if user.admin %}
+											<li><a href="#addEvent" data-toggle="modal">Add Event</a></li>
+											<li class="divider"></li>
+										{% endif %}
+										<li><a id="logout" href="javascript:void(0)">Logout</a></li>
 									</ul>
 								</li>
 							{% else %}
@@ -61,6 +65,33 @@
 				<p>Running Raid Tracker {{ VERSION }}, developed with love by <a href="http://jyggen.com/" target="_blank">jyggen</a>. Open-sourced and available for free on <a href="https://github.com/jyggen/raidtracker" target="_blank">GitHub</a>.</p>
 			</div>
 		</footer>
+		<div class="modal hide fade" id="addEvent" tabindex="-1" role="dialog" aria-labelledby="addEventLabel" aria-hidden="true">
+			<form action="/event" method="POST" id="addEventForm">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+					<h3 id="addEventLabel">Add Event</h3>
+				</div>
+				<div class="modal-body">
+					<label>Date (YYYY-MM-DD)</label>
+					<input name="date" type="date" value="{{ "NOW"|date("Y-m-d") }}">
+					<legend>Attendance</legend>
+					{% for player in players %}
+						<label>{{ player.name }}</label>
+						<select name="attendance-{{ player.id }}">
+							<option value="0">- skip -</option>
+							<option value="OUT">OUT</option>
+							<option valUE="STANDBY">STANDBY</option>
+							<option value="OFFSPEC">OFFSPEC</option>
+							<option value="CONFIRMED">CONFIRMED</option>
+						</select>
+					{% endfor %}
+				</div>
+				<div class="modal-footer">
+					<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+					<button type="submit" class="btn btn-primary">Save</button>
+				</div>
+			</form>
+		</div>
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 		<script src="//login.persona.org/include.js"></script>
 		<script src="//static-azeroth.cursecdn.com/current/js/syndication/tt.js"></script>
@@ -68,7 +99,11 @@
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/raidtracker.js"></script>
 		<script>
-		var currentUser = null;
+		{% if user is not null %}
+			var currentUser = "{{ user.email }}";
+		{% else %}
+			var currentUser = null;
+		{% endif %}
 		$('#attendance').tooltip({
 		  selector: "div[rel=tooltip]"
 		});
@@ -77,6 +112,16 @@
 		});
 		$('#logout').on('click', function(){
 			navigator.id.logout();
+		});
+		$('#addEventForm').on('submit', function(event) {
+			event.preventDefault();
+			$.ajax({
+				type   : 'POST',
+				url    : $(this).attr('action'),
+				data   : $(this).serialize(),
+				success: function(res, status, xhr) { alert("success"); },
+				error  : function(xhr, status, err) { alert("failure"); }
+			});
 		});
 		navigator.id.watch({
 			loggedInUser: currentUser,

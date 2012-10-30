@@ -8,3 +8,6 @@ db:
   username: root
   password: sUp3rS3cre7
   database: raidtracker
+debug: false
+admins:
+- name@example.com

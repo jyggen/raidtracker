@@ -10,7 +10,7 @@ class Index extends Controller {
 		$db   = $this->app['db'];
 		$twig = $this->app['twig'];
 
-		$events    = $db->select()->from('events')->orderBy('date', 'DESC')->execute();
+		$events    = $db->select()->from('events')->orderBy('date', 'DESC')->limit(10)->execute();
 		$event_ids = array();
 
 		krsort($events);
