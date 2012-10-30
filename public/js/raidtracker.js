@@ -26,7 +26,7 @@ navigator.id.watch({
 	onlogin: function(assertion) {
 		$.ajax({
 			type   : 'POST',
-			url    : '/login',
+			url    : '/user/login',
 			data   : {assertion: assertion},
 			success: function(res, status, xhr) { window.location.reload(); },
 			error  : function(xhr, status, err) { alert("login failure"); }
