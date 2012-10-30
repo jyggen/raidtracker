@@ -21,7 +21,7 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 	'twig.path'    => '../templates',
 	'twig.options' => array(
 		'debug' => false,
-		#'cache' => '../cache',
+		'cache' => '../cache',
 	),
 ));
 
