@@ -36,7 +36,10 @@
 									<a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">{{ user.email }} <b class="caret"></b></a>
 									<ul class="dropdown-menu">
 										{% if user.admin %}
+											<li><a href="#addDrop" data-toggle="modal">Add Drop</a></li>
 											<li><a href="#addEvent" data-toggle="modal">Add Event</a></li>
+											<li><a href="#addItem" data-toggle="modal">Add Item</a></li>
+											<li><a href="#addPlayer" data-toggle="modal">Add Player</a></li>
 											<li class="divider"></li>
 										{% endif %}
 										<li><a id="logout" href="javascript:void(0)">Logout</a></li>
