@@ -12,7 +12,7 @@
 			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
 	</head>
-	<body data-spy="scroll" data-target=".navbar">
+	<body data-spy="scroll" data-target=".spyit">
 		<div class="navbar navbar-fixed-top">
 			<div class="navbar-inner">
 				<div class="container">
@@ -22,7 +22,7 @@
 						<span class="icon-bar"></span>
 					</button>
 					<a href="./" class="brand">{{ config.guild.name }}</a>
-					<div class="nav-collapse collapse">
+					<div class="nav-collapse collapse spyit">
 						<ul class="nav">
 							<li><a href="#home">Home</a></li>
 							<li><a href="#attendance">Raid Attendance</a></li>
@@ -33,7 +33,7 @@
 						<ul class="nav">
 							{% if user is not null %}
 								<li class="dropdown">
-									<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ user.email }} <b class="caret"></b></a>
+									<a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">{{ user.email }} <b class="caret"></b></a>
 									<ul class="dropdown-menu">
 										{% if user.admin %}
 											<li><a href="#addEvent" data-toggle="modal">Add Event</a></li>
