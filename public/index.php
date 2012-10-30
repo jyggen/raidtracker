@@ -26,13 +26,7 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 ));
 
 $app->register(new Silex\Provider\SessionServiceProvider());
-
-$app->get('/', function(Silex\Application $app) {
-
-	$controller = new Jyggen\Raidtracker\Controller\Index($app);
-	return $controller->get_index();
-
-});
+$app->mount('/', new Jyggen\Raidtracker\Controller\Index());
 
 $app->post('/event', function(Silex\Application $app, Symfony\Component\HttpFoundation\Request $request) {
 

@@ -1,14 +1,41 @@
 <?php
 namespace Jyggen\Raidtracker\Controller;
 
-use \Jyggen\Raidtracker\Controller;
+use Jyggen\Raidtracker\Twig;
+use Silex\Application;
+use Silex\ControllerCollection;
+use Silex\ControllerProviderInterface;
 
-class Index extends Controller {
+class Index implements ControllerProviderInterface {
 
-	public function get_index() {
+	public function connect(Application $app) {
 
-		$db   = $this->app['db'];
-		$twig = $this->app['twig'];
+		$app['twig']->addExtension(new Twig\Extension());
+		$app['twig']->addGlobal('config', $app['config']);
+		$app['twig']->addGlobal('VERSION', '1.0');
+		$app['twig']->addFilter('avg', new \Twig_Filter_Function('average'));
+		$app['twig']->addFilter('cssClass', new \Twig_Filter_Function('strToCssClass'));
+		$app['twig']->addFilter('ucwords', new \Twig_Filter_Function('ucwords'));
+
+		$controllers = $app['controllers_factory'];
+
+		$controllers->get('/', function(Application $app){ return $this->get_index($app); });
+
+		return $controllers;
+
+	}
+
+	protected function get_index(Application $app) {
+
+		$db   = $app['db'];
+		$twig = $app['twig'];
+
+		$app['twig']->addExtension(new Twig\Extension());
+		$app['twig']->addGlobal('config', $app['config']);
+		$app['twig']->addGlobal('VERSION', '1.0');
+		$app['twig']->addFilter('avg', new \Twig_Filter_Function('average'));
+		$app['twig']->addFilter('cssClass', new \Twig_Filter_Function('strToCssClass'));
+		$app['twig']->addFilter('ucwords', new \Twig_Filter_Function('ucwords'));
 
 		$events    = $db->select()->from('events')->orderBy('date', 'DESC')->limit(10)->execute();
 		$event_ids = array();
@@ -125,7 +152,7 @@ class Index extends Controller {
 			'players' => $players,
 			'karma'   => round(array_sum($karma)/count($karma), 2),
 			'drops'   => $drops,
-			'user'    => $this->app['session']->get('user')
+			'user'    => $app['session']->get('user')
 		));
 
 	}
