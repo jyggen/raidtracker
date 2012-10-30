@@ -20,7 +20,7 @@ $app['db']     = Cabinet\DBAL\Db::connection(array(
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
 	'twig.path'    => '../templates',
 	'twig.options' => array(
-		'debug' => false,
+		'debug' => $app['config']['debug'],
 		'cache' => '../cache',
 	),
 ));
