@@ -16,8 +16,8 @@ $('#addEventForm').on('submit', function(event) {
 		type   : 'POST',
 		url    : $(this).attr('action'),
 		data   : $(this).serialize(),
-		success: function(res, status, xhr) { alert("success"); },
-		error  : function(xhr, status, err) { alert("failure"); }
+		success: function(res, status, xhr) { window.location.reload(); },
+		error  : function(xhr, status, err) { alert("event failure"); }
 	});
 });
 
