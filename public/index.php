@@ -27,6 +27,7 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 
 $app->register(new Silex\Provider\SessionServiceProvider());
 $app->mount('/', new Jyggen\Raidtracker\Controller\Index());
+$app->mount('/user', new Jyggen\Raidtracker\Controller\User());
 
 $app->post('/event', function(Silex\Application $app, Symfony\Component\HttpFoundation\Request $request) {
 
@@ -139,17 +140,6 @@ $app->post('/login', function(Silex\Application $app, Symfony\Component\HttpFoun
 		}
 
 	}
-
-});
-
-$app->post('/logout', function(Silex\Application $app) {
-
-	$app['session']->set('user', null);
-
-	$response = new Symfony\Component\HttpFoundation\Response();
-	$response->setStatusCode(200);
-
-	return $response;
 
 });
 
