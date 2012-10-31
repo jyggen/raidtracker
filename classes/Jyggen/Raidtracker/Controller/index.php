@@ -18,8 +18,9 @@ class Index implements ControllerProviderInterface {
 		$app['twig']->addFilter('ucwords', new \Twig_Filter_Function('ucwords'));
 
 		$controllers = $app['controllers_factory'];
+		$context     = $this;
 
-		$controllers->get('/', function(Application $app){ return $this->get_index($app); });
+		$controllers->get('/', function(Application $app) use ($context) { return $context->get_index($app); });
 
 		return $controllers;
 

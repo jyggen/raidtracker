@@ -12,8 +12,9 @@ class Event implements ControllerProviderInterface {
 	public function connect(Application $app) {
 
 		$controllers = $app['controllers_factory'];
+		$context     = $this;
 
-		$controllers->post('/', function(Application $app, Request $request){ return $this->post_index($app, $request); });
+		$controllers->post('/', function(Application $app, Request $request) use ($context) { return $context->post_index($app, $request); });
 
 		return $controllers;
 

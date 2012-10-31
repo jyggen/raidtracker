@@ -12,9 +12,10 @@ class Drop implements ControllerProviderInterface {
 	public function connect(Application $app) {
 
 		$controllers = $app['controllers_factory'];
+		$context     = $this;
 
-		$controllers->post('/', function(Application $app, Request $request){ return $this->post_index($app, $request); });
-		$controllers->get('/new', function(Application $app){ return $this->get_new($app); });
+		$controllers->post('/', function(Application $app, Request $request) use ($context) { return $context->post_index($app, $request); });
+		$controllers->get('/new', function(Application $app) use ($context) { return $context->get_new($app); });
 
 		return $controllers;
 

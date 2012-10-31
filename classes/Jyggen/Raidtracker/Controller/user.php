@@ -12,9 +12,10 @@ class User implements ControllerProviderInterface {
 	public function connect(Application $app) {
 
 		$controllers = $app['controllers_factory'];
+		$context     = $this;
 
-		$controllers->post('/logout', function(Application $app){ return $this->post_logout($app); });
-		$controllers->post('/login', function(Application $app){ return $this->post_login($app); });
+		$controllers->post('/logout', function(Application $app) use ($context) { return $context->post_logout($app); });
+		$controllers->post('/login', function(Application $app) use ($context) { return $context->post_login($app); });
 
 		return $controllers;
 

@@ -14,8 +14,9 @@ class Item implements ControllerProviderInterface {
 	public function connect(Application $app) {
 
 		$controllers = $app['controllers_factory'];
+		$context     = $this;
 
-		$controllers->post('/', function(Application $app, Request $request){ return $this->post_item($app, $request); });
+		$controllers->post('/', function(Application $app, Request $request) use ($context) { return $context->post_item($app, $request); });
 
 		return $controllers;
 
