@@ -1,3 +1,7 @@
+function errorHandler(xhr, status, err) {
+	alert("modal failure");
+}
+
 $('#attendance').tooltip({
   selector: "div[rel=tooltip]"
 });
@@ -8,6 +12,22 @@ $('#login').on('click', function(){
 
 $('#logout').on('click', function(){
 	navigator.id.logout();
+});
+
+$('#addDrop').on('click', function() {
+	$.ajax({
+		type   : 'GET',
+		url    : '/drop/new',
+		error  : errorHandler,
+		success: function(res, status, xhr) {
+			$('#modal-holder').html(Handlebars.templates.addDrop(res));
+			$('#modal-holder').modal();
+		},
+	});
+});
+
+$('#modal-holder').on('hidden', function () {
+	$('#modal-holder').html('');
 });
 
 $('#addDropForm').on('submit', function(event) {

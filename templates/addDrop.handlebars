@@ -1,4 +1,4 @@
-<div class="modal hide fade" id="addDrop" tabindex="-1" role="dialog" aria-labelledby="addDropLabel" aria-hidden="true">
+<div tabindex="-1" role="dialog" aria-labelledby="addDropLabel">
 	<form action="/drop/" method="POST" id="addDropForm">
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -7,27 +7,27 @@
 		<div class="modal-body">
 			<label>Event</label>
 			<select name="event">
-				{% for event in all_events %}
-					<option value="{{ event.id }}">{{ event.date }}</option>
-				{% endfor %}
+				{{#each events}}
+					<option value="{{this.id}}">{{this.date}}</option>
+				{{/each}}
 			</select>
 			<label>Player</label>
 			<select name="player">
-				{% for player in players %}
-					<option value="{{ player.id }}">{{ player.name }}</option>
-				{% endfor %}
+				{{#each players}}
+					<option value="{{this.id}}">{{this.name}}</option>
+				{{/each}}
 			</select>
 			<label>Item</label>
 			<select name="item">
-				{% for item in all_items %}
-					<option value="{{ item.id }}">{{ item.name }}</option>
-				{% endfor %}
+				{{#each items}}
+					<option value="{{this.id}}">{{this.name}}</option>
+				{{/each}}
 			</select>
 			<label>Boss</label>
 			<select name="boss">
-				{% for boss in all_bosses %}
-					<option value="{{ boss.id }}">{{ boss.zone }}: {{ boss.name }}</option>
-				{% endfor %}
+				{{#each bosses}}
+					<option value="{{this.id}}">{{this.zone}}: {{this.name}}</option>
+				{{/each}}
 			</select>
 		</div>
 		<div class="modal-footer">

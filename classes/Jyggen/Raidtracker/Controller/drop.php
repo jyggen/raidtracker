@@ -14,6 +14,7 @@ class Drop implements ControllerProviderInterface {
 		$controllers = $app['controllers_factory'];
 
 		$controllers->post('/', function(Application $app, Request $request){ return $this->post_index($app, $request); });
+		$controllers->get('/new', function(Application $app){ return $this->get_new($app); });
 
 		return $controllers;
 
@@ -63,6 +64,28 @@ class Drop implements ControllerProviderInterface {
 		$response->setStatusCode(201);
 
 		return $response;
+
+	}
+
+	protected function get_new(Application $app) {
+
+		$all_events = $app['db']->select('id', 'date')->from('events')->orderBy('date')->execute();
+		$all_items  = $app['db']->select('id', 'name')->from('items')->orderBy('name')->execute();
+		$all_bosses = $app['db']->select('niz.id', array('z.name', 'zone'), 'n.name')
+		                        ->from(array('npcs_in_zones', 'niz'))
+		                        ->join(array('npcs', 'n'), 'left')
+		                        ->on('niz.npc_id', 'n.id')
+		                        ->join(array('zones', 'z'), 'left')
+		                        ->on('niz.zone_id', 'z.id')
+		                        ->orderBy('z.name')
+		                        ->orderBy('n.name')
+		                        ->execute();
+
+		return $app->json(array(
+			'events' => $all_events,
+			'items'  => $all_items,
+			'bosses' => $all_bosses,
+		));
 
 	}
 

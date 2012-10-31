@@ -36,7 +36,7 @@
 									<a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">{{ user.email }} <b class="caret"></b></a>
 									<ul class="dropdown-menu">
 										{% if user.admin %}
-											<li><a href="#addDrop" data-toggle="modal">Add Drop</a></li>
+											<li><a href="javascript:void(0)" id="addDrop">Add Drop</a></li>
 											<li><a href="#addEvent" data-toggle="modal">Add Event</a></li>
 											<li><a href="#addItem" data-toggle="modal">Add Item</a></li>
 											<li><a href="#addPlayer" data-toggle="modal">Add Player</a></li>
@@ -69,7 +69,8 @@
 			</div>
 		</footer>
 
-		{% include "addDrop.twig" %}
+		<div id="modal-holder" class="modal hide fade" aria-hidden="true"></div>
+
 		{% include "addEvent.twig" %}
 		{% include "addItem.twig" %}
 
@@ -84,6 +85,8 @@
 		<script src="//login.persona.org/include.js"></script>
 		<script src="//static-azeroth.cursecdn.com/current/js/syndication/tt.js"></script>
 		<script src="/js/bootstrap.min.js"></script>
+		<script src="/js/handlebars.runtime-1.0.rc.1.min.js"></script>
 		<script src="/js/raidtracker.js"></script>
+		<script src="/tpl/addDrop.js"></script>
 	</body>
 </html>
