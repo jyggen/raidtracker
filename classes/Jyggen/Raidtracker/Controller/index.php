@@ -147,12 +147,27 @@ class Index implements ControllerProviderInterface {
 		              ->orderBy('d.id', 'DESC')
 		              ->execute();
 
+		$all_events = $db->select('id', 'date')->from('events')->orderBy('date')->execute();
+		$all_items  = $db->select('id', 'name')->from('items')->orderBy('name')->execute();
+		$all_bosses = $db->select('niz.id', array('z.name', 'zone'), 'n.name')
+		                 ->from(array('npcs_in_zones', 'niz'))
+		                 ->join(array('npcs', 'n'), 'left')
+		                 ->on('niz.npc_id', 'n.id')
+		                 ->join(array('zones', 'z'), 'left')
+		                 ->on('niz.zone_id', 'z.id')
+		                 ->orderBy('z.name')
+		                 ->orderBy('n.name')
+		                 ->execute();
+
 		return $twig->render('index.twig', array(
-			'events'  => $events,
-			'players' => $players,
-			'karma'   => round(array_sum($karma)/count($karma), 2),
-			'drops'   => $drops,
-			'user'    => $app['session']->get('user')
+			'events'     => $events,
+			'players'    => $players,
+			'karma'      => round(array_sum($karma)/count($karma), 2),
+			'drops'      => $drops,
+			'user'       => $app['session']->get('user'),
+			'all_events' => $all_events,
+			'all_items'  => $all_items,
+			'all_bosses' => $all_bosses,
 		));
 
 	}

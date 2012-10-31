@@ -28,6 +28,7 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 $app->register(new Silex\Provider\SessionServiceProvider());
 
 $app->mount('/', new Jyggen\Raidtracker\Controller\Index());
+$app->mount('/drop', new Jyggen\Raidtracker\Controller\Drop());
 $app->mount('/event', new Jyggen\Raidtracker\Controller\Event());
 $app->mount('/item', new Jyggen\Raidtracker\Controller\Item());
 $app->mount('/user', new Jyggen\Raidtracker\Controller\User());

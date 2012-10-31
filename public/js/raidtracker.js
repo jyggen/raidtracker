@@ -10,6 +10,17 @@ $('#logout').on('click', function(){
 	navigator.id.logout();
 });
 
+$('#addDropForm').on('submit', function(event) {
+	event.preventDefault();
+	$.ajax({
+		type   : 'POST',
+		url    : $(this).attr('action'),
+		data   : $(this).serialize(),
+		success: function(res, status, xhr) { window.location.reload(); },
+		error  : function(xhr, status, err) { alert("drop failure"); }
+	});
+});
+
 $('#addEventForm').on('submit', function(event) {
 	event.preventDefault();
 	$.ajax({

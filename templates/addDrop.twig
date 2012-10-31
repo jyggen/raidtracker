@@ -1,0 +1,38 @@
+<div class="modal hide fade" id="addDrop" tabindex="-1" role="dialog" aria-labelledby="addDropLabel" aria-hidden="true">
+	<form action="/drop/" method="POST" id="addDropForm">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			<h3 id="addDropLabel">Add Drop</h3>
+		</div>
+		<div class="modal-body">
+			<label>Event</label>
+			<select name="event">
+				{% for event in all_events %}
+					<option value="{{ event.id }}">{{ event.date }}</option>
+				{% endfor %}
+			</select>
+			<label>Player</label>
+			<select name="player">
+				{% for player in players %}
+					<option value="{{ player.id }}">{{ player.name }}</option>
+				{% endfor %}
+			</select>
+			<label>Item</label>
+			<select name="item">
+				{% for item in all_items %}
+					<option value="{{ item.id }}">{{ item.name }}</option>
+				{% endfor %}
+			</select>
+			<label>Boss</label>
+			<select name="boss">
+				{% for boss in all_bosses %}
+					<option value="{{ boss.id }}">{{ boss.zone }}: {{ boss.name }}</option>
+				{% endfor %}
+			</select>
+		</div>
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+			<button type="submit" class="btn btn-primary">Add</button>
+		</div>
+	</form>
+</div>
