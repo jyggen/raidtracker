@@ -21,6 +21,17 @@ $('#addEventForm').on('submit', function(event) {
 	});
 });
 
+$('#addItemForm').on('submit', function(event) {
+	event.preventDefault();
+	$.ajax({
+		type   : 'POST',
+		url    : $(this).attr('action'),
+		data   : $(this).serialize(),
+		success: function(res, status, xhr) { window.location.reload(); },
+		error  : function(xhr, status, err) { alert("item failure"); }
+	});
+});
+
 navigator.id.watch({
 	loggedInUser: currentUser,
 	onlogin: function(assertion) {
