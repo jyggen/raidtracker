@@ -22,7 +22,7 @@ class Item implements ControllerProviderInterface {
 
 	}
 
-	protected function post_item(Application $app, Request $request) {
+	public function post_item(Application $app, Request $request) {
 
 		$item_id = $request->request->get('id');
 

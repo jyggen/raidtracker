@@ -21,7 +21,7 @@ class User implements ControllerProviderInterface {
 
 	}
 
-	protected function post_logout(Application $app) {
+	public function post_logout(Application $app) {
 
 		$app['session']->set('user', null);
 
@@ -32,7 +32,7 @@ class User implements ControllerProviderInterface {
 
 	}
 
-	protected function post_login(Application $app, Request $request) {
+	public function post_login(Application $app, Request $request) {
 
 		$audience  = (isset($_SERVER['HTTPS']) ? 'https://' : 'http://').$_SERVER['SERVER_NAME'].':'.$_SERVER['SERVER_PORT'];
 		$assertion = $request->get('assertion');

@@ -20,7 +20,7 @@ class Event implements ControllerProviderInterface {
 
 	}
 
-	protected function post_index(Application $app, Request $request) {
+	public function post_index(Application $app, Request $request) {
 
 		$date = $request->request->get('date');
 

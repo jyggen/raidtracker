@@ -21,7 +21,7 @@ class Drop implements ControllerProviderInterface {
 
 	}
 
-	protected function post_index(Application $app, Request $request) {
+	public function post_index(Application $app, Request $request) {
 
 		$event  = $request->request->get('event');
 		$player = $request->request->get('player');
@@ -68,7 +68,7 @@ class Drop implements ControllerProviderInterface {
 
 	}
 
-	protected function get_new(Application $app) {
+	public function get_new(Application $app) {
 
 		$events  = $app['db']->select('id', 'date')->from('events')->orderBy('date')->execute();
 		$players = $app['db']->select('id', 'name')->from('players')->orderBy('name')->execute();

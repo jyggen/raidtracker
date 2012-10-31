@@ -26,7 +26,7 @@ class Index implements ControllerProviderInterface {
 
 	}
 
-	protected function get_index(Application $app) {
+	public function get_index(Application $app) {
 
 		$db   = $app['db'];
 		$twig = $app['twig'];
