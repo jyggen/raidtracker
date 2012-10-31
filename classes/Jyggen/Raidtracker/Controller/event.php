@@ -19,7 +19,7 @@ class Event implements ControllerProviderInterface {
 
 	}
 
-	protected function get_index(Application $app, Request $request) {
+	protected function post_index(Application $app, Request $request) {
 
 		$date = $request->request->get('date');
 
@@ -70,7 +70,7 @@ class Event implements ControllerProviderInterface {
 		}
 
 		$response = new Response();
-		$response->setStatusCode(200);
+		$response->setStatusCode(201);
 
 		return $response;
 
