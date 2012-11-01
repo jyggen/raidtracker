@@ -30,27 +30,21 @@ class Drop implements ControllerProviderInterface {
 
 		if(is_null($event) or is_null($player) or is_null($item) or is_null($boss)) {
 
-			$response = new Response();
-			$response->setStatusCode(400);
-
-			return $response;
+			return $app->json('Unable to fulfill request: Missing argument(s).', 400);
 
 		}
 
 		if ((
-			count($app['db']->select('id')->from('events')->where('id', $event)->execute())       == 0
+			0 == count($app['db']->select('id')->from('events')->where('id', $event)->execute())
 		) or (
-			count($app['db']->select('id')->from('players')->where('id', $player)->execute())     == 0
+			0 == count($app['db']->select('id')->from('players')->where('id', $player)->execute())
 		) or (
-			count($app['db']->select('id')->from('items')->where('id', $item)->execute())         == 0
+			0 == count($app['db']->select('id')->from('items')->where('id', $item)->execute())
 		) or (
-			count($app['db']->select('id')->from('npcs_in_zones')->where('id', $boss)->execute()) == 0
+			0 == count($app['db']->select('id')->from('npcs_in_zones')->where('id', $boss)->execute())
 		)) {
 
-			$response = new Response();
-			$response->setStatusCode(404);
-
-			return $response;
+			return $app->json('Unable to fulfill request: Invalid information supplied.', 404);
 
 		}
 

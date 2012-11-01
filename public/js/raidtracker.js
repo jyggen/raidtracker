@@ -1,5 +1,13 @@
 function errorHandler(xhr, status, err) {
-	alert("modal failure");
+
+	errorMsg = xhr.responseText;
+
+	if(errorMsg == '')
+		errorMsg = 'An unknown error has occured. Please try again.'
+
+	$('#notification-holder').html(Handlebars.templates.error({message: errorMsg}));
+	$.scrollTo('#home');
+
 }
 
 $('#attendance').tooltip({
