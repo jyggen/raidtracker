@@ -61,7 +61,59 @@
 		</div>
 		<div class="container">
 			<div id="notification-holder"></div>
-			{% block content %}{% endblock %}
+			<div id="attendance">
+				<div class="page-header">
+					<h2>Raid Attendance <small>or <em>Who's slacking?</em></small></h2>
+				</div>
+				<table class="table table-striped table-hover">
+					<thead>
+						<tr>
+							<th>Player</th>
+							<th class="center">ilvl</th>
+							{% for key, data in events %}
+								<th class="center">{{ data.date|date("M jS") }}</th>
+							{% endfor %}
+							<th class="center">Total</th>
+							<th class="center">Karma</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for player in players %}
+							{% include "attendance.twig" %}
+						{% endfor %}
+					</tbody>
+					<tfoot>
+						<tr>
+							<td>{{ players|length }} Raiders</td>
+							<td class="center">{{ players|avg('ilvl') }}</td>
+							<td class="center" colspan="{{ events|length + 1 }}"></td>
+							<td class="center">{{ karma }}</td>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+
+			<div id="loot">
+				<div class="page-header">
+					<h2>Loot History <small>or <em>Who ninja'd what?</em></small></h2>
+				</div>
+				<table class="table table-striped table-hover">
+					<thead>
+						<tr>
+							<th>Date</th>
+							<th>Player</th>
+							<th>Item</th>
+							<th>Zone</th>
+							<th>NPC</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for drop in drops %}
+							{% include "loot.twig" %}
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
 		</div>
 		<footer class="footer">
 			<div class="container">

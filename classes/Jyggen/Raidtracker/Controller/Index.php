@@ -148,7 +148,7 @@ class Index implements ControllerProviderInterface {
 		              ->orderBy('d.id', 'DESC')
 		              ->execute();
 
-		return $twig->render('index.twig', array(
+		return $twig->render('base.twig', array(
 			'events'     => $events,
 			'players'    => $players,
 			'karma'      => round(array_sum($karma)/count($karma), 2),
