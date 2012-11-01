@@ -25,10 +25,7 @@ class User implements ControllerProviderInterface {
 
 		$app['session']->set('user', null);
 
-		$response = new Response();
-		$response->setStatusCode(200);
-
-		return $response;
+		return $app->json('Successfully logged-out.', 200);
 
 	}
 
@@ -39,10 +36,7 @@ class User implements ControllerProviderInterface {
 
 		if(is_null($assertion)) {
 
-			$response = new Response();
-			$response->setStatusCode(400);
-
-			return $response;
+			return $app->json('Unable to fulfill request: Missing argument(s).', 400);
 
 		} else {
 
@@ -71,17 +65,11 @@ class User implements ControllerProviderInterface {
 
 				}
 
-				$response = new Response();
-				$response->setStatusCode(200);
-
-				return $response;
+				return $app->json('Successfully logged-in.', 200);
 
 			} else {
 
-				$response = new Response();
-				$response->setStatusCode(500);
-
-				return $response;
+				return $app->json('Unable to fulfill request: Verification failed, don\'t be evil!', 500);
 
 			}
 

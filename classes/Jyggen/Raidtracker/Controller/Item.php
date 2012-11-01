@@ -28,19 +28,13 @@ class Item implements ControllerProviderInterface {
 
 		if(is_null($item_id) or intval($item_id) != $item_id) {
 
-			$response = new Response();
-			$response->setStatusCode(400);
-
-			return $response;
+			return $app->json('Unable to fulfill request: Missing argument(s).', 400);
 
 		}
 
 		if(count($app['db']->select('id')->from('items')->where('id', $item_id)->execute()) != 0) {
 
-			$response = new Response();
-			$response->setStatusCode(400);
-
-			return $response;
+			return $app->json('Item already exists in database.', 400);
 
 		}
 
@@ -59,18 +53,12 @@ class Item implements ControllerProviderInterface {
 				'quality' => $quality
 			))->execute();
 
-			$response = new Response();
-			$response->setStatusCode(201);
-
-			return $response;
+			return $app->json('Item successfully added to database.', 201);
 
 
 		} catch(PageNotFoundException $e) {
 
-			$response = new Response();
-			$response->setStatusCode(404);
-
-			return $response;
+			return $app->json('Blizzard says: Item ID not found.', 404);
 
 		}
 

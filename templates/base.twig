@@ -37,8 +37,8 @@
 									<ul class="dropdown-menu">
 										{% if user.admin %}
 											<li><a href="javascript:void(0)" id="addDrop">Add Drop</a></li>
-											<li><a href="#addEvent" data-toggle="modal">Add Event</a></li>
-											<li><a href="#addItem" data-toggle="modal">Add Item</a></li>
+											<li><a href="javascript:void(0)" id="addEvent">Add Event</a></li>
+											<li><a href="javascript:void(0)" id="addItem">Add Item</a></li>
 											<li><a href="#addPlayer" data-toggle="modal">Add Player</a></li>
 											<li class="divider"></li>
 										{% endif %}
@@ -72,9 +72,6 @@
 
 		<div id="modal-holder" class="modal hide fade" aria-hidden="true"></div>
 
-		{% include "addEvent.twig" %}
-		{% include "addItem.twig" %}
-
 		<script>
 		{% if user is not null %}
 			var currentUser = "{{ user.email }}";
@@ -90,6 +87,9 @@
 		<script src="/js/jquery.scrollTo.min.js"></script>
 		<script src="/js/raidtracker.js"></script>
 		<script src="/tpl/addDrop.js"></script>
+		<script src="/tpl/addEvent.js"></script>
+		<script src="/tpl/addItem.js"></script>
 		<script src="/tpl/error.js"></script>
+		<script src="/tpl/success.js"></script>
 	</body>
 </html>

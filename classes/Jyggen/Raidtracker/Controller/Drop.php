@@ -55,10 +55,7 @@ class Drop implements ControllerProviderInterface {
 			'npcs_in_zones_id' => $boss,
 		))->execute();
 
-		$response = new Response();
-		$response->setStatusCode(201);
-
-		return $response;
+		return $app->json('Drop successfully added to database.', 201);
 
 	}
 

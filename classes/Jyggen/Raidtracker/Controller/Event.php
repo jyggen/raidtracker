@@ -15,6 +15,7 @@ class Event implements ControllerProviderInterface {
 		$context     = $this;
 
 		$controllers->post('/', function(Application $app, Request $request) use ($context) { return $context->post_index($app, $request); });
+		$controllers->get('/new', function(Application $app) use ($context) { return $context->get_new($app); });
 
 		return $controllers;
 
@@ -26,10 +27,7 @@ class Event implements ControllerProviderInterface {
 
 		if(is_null($date) or date('Y-m-d', strtotime($date)) !== $date) {
 
-			$response = new Response();
-			$response->setStatusCode(400);
-
-			return $response;
+			return $app->json('Unable to fulfill request: Invalid date supplied.', 400);
 
 		}
 
@@ -70,10 +68,18 @@ class Event implements ControllerProviderInterface {
 
 		}
 
-		$response = new Response();
-		$response->setStatusCode(201);
+		return $app->json('Event and related attendance successfully added to database.', 201);
 
-		return $response;
+	}
+
+	public function get_new(Application $app) {
+
+		$players = $app['db']->select('id', 'name')->from('players')->orderBy('name')->execute();
+
+		return $app->json(array(
+			'date'    => date('Y-m-d'),
+			'players' => $players,
+		));
 
 	}
 

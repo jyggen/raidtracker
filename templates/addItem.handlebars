@@ -1,10 +1,11 @@
-<div class="modal hide fade" id="addItem" tabindex="-1" role="dialog" aria-labelledby="addItemLabel" aria-hidden="true">
+<div tabindex="-1" role="dialog" aria-labelledby="addItemLabel">
 	<form action="/item/" method="POST" id="addItemForm">
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 			<h3 id="addItemLabel">Add Item</h3>
 		</div>
 		<div class="modal-body">
+			<div id="notification-modal-holder"></div>
 			<label>Item ID</label>
 			<input name="id" type="text">
 		</div>

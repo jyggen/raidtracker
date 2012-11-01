@@ -1,23 +1,24 @@
-<div class="modal hide fade" id="addEvent" tabindex="-1" role="dialog" aria-labelledby="addEventLabel" aria-hidden="true">
+<div tabindex="-1" role="dialog" aria-labelledby="addEventLabel">
 	<form action="/event/" method="POST" id="addEventForm">
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 			<h3 id="addEventLabel">Add Event</h3>
 		</div>
 		<div class="modal-body">
+			<div id="notification-modal-holder"></div>
 			<label>Date (YYYY-MM-DD)</label>
-			<input name="date" type="date" value="{{ "NOW"|date("Y-m-d") }}">
+			<input name="date" type="date" value="{{this.date}}">
 			<legend>Attendance</legend>
-			{% for player in players %}
-				<label>{{ player.name }}</label>
-				<select name="attendance-{{ player.id }}">
+			{{#each players}}
+				<label>{{this.name}}</label>
+				<select name="attendance-{{this.id}}">
 					<option value="0">- skip -</option>
 					<option value="OUT">OUT</option>
 					<option valUE="STANDBY">STANDBY</option>
 					<option value="OFFSPEC">OFFSPEC</option>
 					<option value="CONFIRMED">CONFIRMED</option>
 				</select>
-			{% endfor %}
+			{{/each}}
 		</div>
 		<div class="modal-footer">
 			<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
