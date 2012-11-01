@@ -46,7 +46,7 @@ class User implements ControllerProviderInterface {
 
 		} else {
 
-			$response = Zend\Http\ClientStatic::post('https://verifier.login.persona.org/verify', array(
+			$response = \Zend\Http\ClientStatic::post('https://verifier.login.persona.org/verify', array(
 				'assertion' => $assertion,
 				'audience'  => $audience
 			));
