@@ -15,7 +15,7 @@ class User implements ControllerProviderInterface {
 		$context     = $this;
 
 		$controllers->post('/logout', function(Application $app) use ($context) { return $context->post_logout($app); });
-		$controllers->post('/login', function(Application $app) use ($context) { return $context->post_login($app); });
+		$controllers->post('/login', function(Application $app, Request $request) use ($context) { return $context->post_login($app, $request); });
 
 		return $controllers;
 
