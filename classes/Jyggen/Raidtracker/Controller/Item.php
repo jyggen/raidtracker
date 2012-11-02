@@ -17,13 +17,13 @@ class Item implements ControllerProviderInterface {
 		$controllers = $app['controllers_factory'];
 		$context     = $this;
 
-		$controllers->post('/', function(Application $app, Request $request) use ($context) { return $context->post_item($app, $request); });
+		$controllers->post('/', function(Application $app, Request $request) use ($context) { return $context->post_index($app, $request); });
 
 		return $controllers;
 
 	}
 
-	public function post_item(Application $app, Request $request) {
+	public function post_index(Application $app, Request $request) {
 
 		$item_id = $request->request->get('id');
 
