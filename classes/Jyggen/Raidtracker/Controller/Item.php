@@ -54,7 +54,7 @@ class Item implements ControllerProviderInterface {
 				'quality' => $quality
 			))->execute();
 
-			return $app->json('Item successfully added to database.', 201);
+			return $app->json($name.' successfully added to database.', 201);
 
 
 		} catch(PageNotFoundException $e) {
