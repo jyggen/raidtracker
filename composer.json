@@ -8,6 +8,9 @@
 		"kherge/wisdom": "1.*",
 		"symfony/yaml": "2.1.*"
 	},
+	"require-dev": {
+		"symfony/finder": "2.2.x-dev"
+	},
 	"autoload": {
 		"psr-0": { "Jyggen\\Raidtracker": "classes/" }
 	}

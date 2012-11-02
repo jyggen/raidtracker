@@ -1,6 +1,6 @@
 <?php
-require '../vendor/autoload.php';
-require '../functions.php';
+require_once '../vendor/autoload.php';
+require_once '../functions.php';
 
 use Cabinet\DBAL\Db;
 use Jyggen\Raidtracker\Controller;
