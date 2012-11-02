@@ -18,17 +18,17 @@ CREATE TABLE IF NOT EXISTS `classes` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=12 ;
 
 INSERT INTO `classes` VALUES
-(1, 'Death Knight'),
-(2, 'Druid'),
+(1, 'Warrior'),
+(2, 'Paladin'),
 (3, 'Hunter'),
-(4, 'Mage'),
-(5, 'Monk'),
-(6, 'Paladin'),
-(7, 'Priest'),
-(8, 'Rogue'),
-(9, 'Shaman'),
-(10, 'Warlock'),
-(11, 'Warrior');
+(4, 'Rogue'),
+(5, 'Priest'),
+(6, 'Death Knight'),
+(7, 'Shaman'),
+(8, 'Mage'),
+(9, 'Warlock'),
+(10, 'Monk'),
+(11, 'Druid');
 
 CREATE TABLE IF NOT EXISTS `drops` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
