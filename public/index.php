@@ -39,6 +39,7 @@ $app->mount('/', new Controller\Index);
 $app->mount('/drop', new Controller\Drop);
 $app->mount('/event', new Controller\Event);
 $app->mount('/item', new Controller\Item);
+$app->mount('/player', new Controller\Player);
 $app->mount('/user', new Controller\User);
 
 $app->run();
