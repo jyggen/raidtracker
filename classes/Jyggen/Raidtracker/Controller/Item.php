@@ -1,13 +1,14 @@
 <?php
 namespace Jyggen\Raidtracker\Controller;
 
+use bnetlib\Exception\JsonException;
+use bnetlib\Exception\PageNotFoundException;
 use bnetlib\WorldOfWarcraft;
 use Silex\Application;
 use Silex\ControllerCollection;
 use Silex\ControllerProviderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use bnetlib\Exception\PageNotFoundException;
 
 class Item implements ControllerProviderInterface {
 
@@ -59,6 +60,10 @@ class Item implements ControllerProviderInterface {
 		} catch(PageNotFoundException $e) {
 
 			return $app->json('Blizzard says: Item ID not found.', 404);
+
+		} catch(JsonException $e) {
+
+			return $app->json('Blizzard returned weird data, please try again.', 500);
 
 		}
 
