@@ -92,6 +92,11 @@ $('#addItem').on('click', function() {
 	$('#modal-holder').modal();
 });
 
+$('#addPlayer').on('click', function() {
+	$('#modal-holder').html(Handlebars.templates.addPlayer());
+	$('#modal-holder').modal();
+});
+
 $('#modal-holder').on('hidden', function () {
 	$('#modal-holder').html('');
 });
@@ -99,6 +104,7 @@ $('#modal-holder').on('hidden', function () {
 $('#modal-holder').on('submit', '#addDropForm', submitHandler);
 $('#modal-holder').on('submit', '#addEventForm', submitHandler);
 $('#modal-holder').on('submit', '#addItemForm', submitHandler);
+$('#modal-holder').on('submit', '#addPlayerForm', submitHandler);
 
 navigator.id.watch({
 	loggedInUser: currentUser,
